@@ -1,0 +1,15 @@
+import os
+import openai
+
+openai.api_key = os.environ["OPENAI_API_KEY"]
+
+response = openai.Completion.create(
+  engine="curie",
+  prompt="Good morning Mr. Admin, I wanted to let you know that there are potential HVAC issues in the first-floor hallway in the west wing. I found it today due to a janitor reporting a unexpected condensation. We have to address these problems as soon as possible as it could pose greater risks and damages. Thank you. Regards, Mr. Tech.\n\ntl;dr: The HVAC system isn't working in first floor west wing. Urgent\n\nGood afternoon Mr. Admin, I wanted to let you know that we have found plumbing issues in the men’s restroom in the patient waiting room. It appeared to be due to clogged toilet. We do not expect the clean up to take very long, but it is best that we take care of this as soon as possible, for the patient’s sake. Thank you. Regards, Mr. Tech.\n\ntl;dr: Clogged toilet in men’s restroom. Need to be fixed asap.\n\nGood morning Mr. Admin, we have found some problems with the reliability of the network servers. We will be installing new software soon, and during the maintenance time period, patient records will not be available. Please don’t hesitate to voice any concerns, and let us know when would be a good time for the updates. Thank you. Regards, Mr. Tech.\n\ntl;dr: Network server unreliable. Needs to be fixed asap",
+  temperature=0.72,
+  max_tokens=60,
+  top_p=1,
+  frequency_penalty=1,
+  presence_penalty=0,
+  stop=["\n\n"]
+)
